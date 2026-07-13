@@ -55,12 +55,21 @@ a:hover {
   gap: clamp(32px, 5vw, 72px);
   align-items: center;
 }
+.deck-motif {
+  justify-self: center;
+  max-width: 360px;
+  width: 100%;
+}
 @media (max-width: 860px) {
   .deck-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
+  /* Show the motif small, above the text */
   .deck-motif {
-    display: none;
+    order: -1;
+    justify-self: start;
+    max-width: 112px;
   }
 }
 

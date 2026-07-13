@@ -302,7 +302,7 @@ export default function DeckPage() {
                 height={420}
                 unoptimized
                 priority
-                style={{ width: "100%", maxWidth: 360, height: "auto", display: "block" }}
+                style={{ width: "100%", height: "auto", display: "block" }}
               />
             </div>
           ) : null}
