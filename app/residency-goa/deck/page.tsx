@@ -9,7 +9,7 @@ const RED = "#6B2224";
 const MUTED = "#8B857A";
 const HAIR = "rgba(139, 133, 122, 0.28)";
 // Bump when the motif GIFs change so browsers don't serve a stale cached copy.
-const MOTIF_V = "3";
+const MOTIF_V = "4";
 
 type Slide = {
   kicker: string;
