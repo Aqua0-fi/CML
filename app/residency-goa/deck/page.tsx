@@ -34,7 +34,7 @@ const titleStyle: React.CSSProperties = {
 } as React.CSSProperties;
 const bodyStyle: React.CSSProperties = {
   margin: "32px 0 0 0",
-  maxWidth: 680,
+  maxWidth: 700,
   fontSize: "clamp(18px, 2.1vw, 25px)",
   lineHeight: 1.5,
   fontWeight: 360,
@@ -44,6 +44,36 @@ const bodyStyle: React.CSSProperties = {
 } as React.CSSProperties;
 const accent = { color: RED };
 
+// Small list bullet (What's included)
+const Bullet: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
+    <span style={{ color: RED, fontSize: 15, lineHeight: 1 }}>◇</span>
+    <span style={{ fontSize: "clamp(18px, 2.1vw, 24px)", lineHeight: 1.45, fontWeight: 360 }}>
+      {children}
+    </span>
+  </div>
+);
+
+// Roadmap row (The three weeks)
+const Week: React.FC<{ n: string; children: React.ReactNode }> = ({ n, children }) => (
+  <div style={{ display: "flex", gap: 24, alignItems: "baseline" }}>
+    <div
+      style={{
+        color: RED,
+        fontSize: 14,
+        letterSpacing: "0.14em",
+        textTransform: "uppercase",
+        flex: "0 0 86px",
+      }}
+    >
+      {n}
+    </div>
+    <div style={{ fontSize: "clamp(17px, 2vw, 23px)", lineHeight: 1.4, fontWeight: 360, maxWidth: 560 }}>
+      {children}
+    </div>
+  </div>
+);
+
 const SLIDES: Slide[] = [
   {
     kicker: "Cross Margin Labs · Residency",
@@ -52,84 +82,75 @@ const SLIDES: Slide[] = [
         Residency Goa<span style={accent}>.</span>
       </>
     ),
-    body: "A three-week hacker house on the Goan shore — where ideas become working DeFi infrastructure.",
+    body: "Three weeks in Goa to build the next DeFi primitives — and validate the business around them.",
     foot: "Goa, India",
   },
   {
     kicker: "01 — Origin",
-    title: "It began at a residency.",
+    title: "It started at Edge City.",
     body: (
       <>
-        We met at Edge City, Patagonia, at the Vibe Code Residency. That room is
-        where <span style={accent}>Aqua0</span> was born — where a founder met
-        his CTO, and an idea turned into infrastructure.
+        We met at Edge City, Patagonia, at the Vibe Code Residency — the room
+        where <span style={accent}>Aqua0</span> was born: where a founder met
+        his CTO, and an idea became infrastructure. Edge City is home to us.
       </>
     ),
-    foot: "Fig. — Edge City, Patagonia",
   },
   {
-    kicker: "02 — The idea",
-    title: "So we're taking it a level further.",
-    body: "Cross Margin Labs Residency — our own. One shore, three weeks, a room full of builders, engineered to turn ideas into shipped work.",
+    kicker: "02 — The goal",
+    title: "Build the next DeFi primitives.",
+    body: "Three weeks to create real innovations in DeFi — deepening liquidity and making core primitives more efficient. The kind of work that became Aqua0.",
   },
   {
-    kicker: "03 — What it is",
-    title: "A hacker house. A focus group. Three weeks.",
-    body: "Small teams build real innovations on our partners' technology — making a market maker more efficient, sharpening a mechanism, shipping the next Aqua0.",
+    kicker: "03 — Who it's for",
+    title: "Engineers and go-to-market, in balance.",
+    body: "We're not just shipping a proof of concept — we're validating a business. So we pair strong engineers with go-to-market builders.",
+    foot: "6–10 builders · plus the Aqua0 team already on the ground",
   },
   {
-    kicker: "04 — The outcome",
-    title: (
-      <>
-        In with an idea.
-        <br />
-        Out with a <span style={accent}>proof of concept</span>.
-      </>
-    ),
-    body: "Every team leaves with — at minimum — a working PoC. Something concrete to put in front of our sponsors.",
-  },
-  {
-    kicker: "05 — Why we build it",
-    title: "What we're really after.",
+    kicker: "04 — What's included",
+    title: "On us.",
     body: (
-      <div style={{ display: "grid", gap: 28, maxWidth: 720 }}>
-        <div>
-          <div style={{ ...accent, fontSize: 15, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 8 }}>
-            Innovation
-          </div>
-          <div style={{ fontSize: "clamp(18px, 2.1vw, 25px)", lineHeight: 1.45, fontWeight: 360 }}>
-            The strongest cases, we keep developing — new infrastructure worth
-            continuing.
-          </div>
-        </div>
-        <div>
-          <div style={{ ...accent, fontSize: 15, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 8 }}>
-            People
-          </div>
-          <div style={{ fontSize: "clamp(18px, 2.1vw, 25px)", lineHeight: 1.45, fontWeight: 360 }}>
-            The builders worth building with — potential hires, over the medium
-            term.
-          </div>
-        </div>
+      <div style={{ display: "grid", gap: 20, maxWidth: 640 }}>
+        <Bullet>Edge City tickets</Bullet>
+        <Bullet>The residency & stay, fully covered</Bullet>
+        <Bullet>Backed by our partners & sponsors</Bullet>
       </div>
     ),
   },
   {
-    kicker: "06 — The place",
-    title: "Goa.",
-    body: "Portuguese arches, the Arabian Sea, and a veranda where financial engineering and DeFi are argued into the future.",
+    kicker: "05 — The three weeks",
+    title: (
+      <>
+        In with an idea.
+        <br />
+        Out with <span style={accent}>two products</span>.
+      </>
+    ),
+    body: (
+      <div style={{ display: "grid", gap: 22, maxWidth: 720 }}>
+        <Week n="Week 01">
+          Plan &amp; prototype — scope the idea and build a working proof of
+          concept.
+        </Week>
+        <Week n="Week 02">Build — turn the PoC into a working MVP.</Week>
+        <Week n="Week 03">
+          Validate — take it to the market and gather real validation.
+        </Week>
+      </div>
+    ),
   },
   {
     kicker: "Residency Goa",
     title: (
       <>
-        Come build the future
+        Then we take it back
         <br />
-        with us<span style={accent}>.</span>
+        to Edge City<span style={accent}>.</span>
       </>
     ),
-    body: "Cross Margin Labs, Inc. · Delaware, USA",
-    foot: "© 2026 Cross Margin Labs, Inc.",
+    body: "We show what we built where it all began.",
+    foot: "Cross Margin Labs, Inc. · Goa 2026",
   },
 ];
 
@@ -270,14 +291,7 @@ export default function DeckPage() {
           ← Prev
         </button>
 
-        <div
-          style={{
-            flex: 1,
-            height: 1,
-            background: HAIR,
-            position: "relative",
-          }}
-        >
+        <div style={{ flex: 1, height: 1, background: HAIR, position: "relative" }}>
           <div
             style={{
               position: "absolute",
