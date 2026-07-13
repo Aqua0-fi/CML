@@ -1,0 +1,173 @@
+html {
+  scroll-behavior: smooth;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f1ea;
+}
+body {
+  font-family: var(--font-fraunces), serif;
+  color: #16130f;
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: #6b2224;
+  color: #f4f1ea;
+}
+a {
+  color: #16130f;
+  text-decoration: none;
+}
+a:hover {
+  color: #6b2224;
+}
+
+/* Muted uppercase links (nav + footer) settle to ink on hover */
+.cml-link:hover {
+  color: #16130f;
+}
+
+@keyframes cml-hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes cml-line-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes cml-letter-settle {
+  from {
+    opacity: 0;
+    transform: translateY(0.42em);
+    font-variation-settings: "opsz" 144, "wght" 320;
+    filter: blur(3px);
+  }
+  60% {
+    filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    font-variation-settings: "opsz" 144, "wght" 700;
+    filter: blur(0);
+  }
+}
+.cml-l {
+  display: inline-block;
+  animation: cml-letter-settle 1.3s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+@keyframes cml-anno-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes cml-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes cml-measure-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes cml-path-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes cml-grain-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1.2%, 0.8%);
+  }
+  50% {
+    transform: translate(0.9%, -1.1%);
+  }
+  75% {
+    transform: translate(-0.7%, -0.6%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Aqua0 card hover choreography (parent hover -> child motion) */
+[data-aqua-card] [data-aqua-arrow] {
+  display: inline-block;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-aqua-card]:hover [data-aqua-arrow] {
+  transform: translateX(7px);
+}
+[data-aqua-card] [data-aqua-underline] {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-aqua-card]:hover [data-aqua-underline] {
+  transform: scaleX(1);
+}
+[data-aqua-card] {
+  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1), background 0.6s ease;
+}
+[data-aqua-card]:hover {
+  background: rgba(139, 133, 122, 0.05);
+  box-shadow: 0 18px 40px -28px rgba(22, 19, 15, 0.28);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  [data-reveal],
+  [data-anno] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cml-l {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  [data-aqua-card] [data-aqua-underline] {
+    transform: scaleX(1);
+  }
+}
