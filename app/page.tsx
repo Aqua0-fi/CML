@@ -154,20 +154,21 @@ export default function Home() {
   }, []);
 
   // Hero: barely-perceptible weight shift tracking the cursor across the headline.
+  // Kept intentionally narrow (690..710, centered on the 700 default) and eased
+  // via a constant transition on the element, so it drifts rather than snapping.
   const onHeroMove = (e: React.MouseEvent<HTMLHeadingElement>) => {
     if (reducedRef.current) return;
     const el = heroRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
     const x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
-    const wght = Math.round(670 + x * 60);
+    const wght = Math.round(690 + x * 20);
     el.style.fontVariationSettings = `'opsz' 144, 'wght' ${wght}`;
   };
   const onHeroLeave = () => {
     const el = heroRef.current;
     if (!el) return;
-    el.style.transition = "font-variation-settings 0.8s ease";
-    el.style.fontVariationSettings = `'opsz' 144`;
+    el.style.fontVariationSettings = `'opsz' 144, 'wght' 700`;
   };
 
   return (
@@ -315,6 +316,8 @@ export default function Home() {
                 fontWeight: 700,
                 letterSpacing: "-0.025em",
                 fontVariationSettings: "'opsz' 144",
+                transition:
+                  "font-variation-settings 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
                 textWrap: "balance",
                 cursor: "default",
               } as React.CSSProperties}
