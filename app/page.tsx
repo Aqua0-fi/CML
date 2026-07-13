@@ -57,6 +57,7 @@ function Crosshair({
     <div
       data-anno
       aria-hidden="true"
+      className="cml-crosshair"
       style={{
         position: "absolute",
         opacity: 0,
@@ -235,6 +236,7 @@ export default function Home() {
       </div>
 
       <div
+        className="cml-container"
         style={{
           position: "relative",
           zIndex: 1,
@@ -245,6 +247,7 @@ export default function Home() {
       >
         {/* Top bar */}
         <header
+          className="cml-header cml-pad"
           style={{
             display: "flex",
             alignItems: "baseline",
@@ -265,7 +268,10 @@ export default function Home() {
           >
             Cross Margin Labs
           </div>
-          <nav style={{ display: "flex", gap: 40, alignItems: "baseline" }}>
+          <nav
+            className="cml-nav"
+            style={{ display: "flex", gap: 40, alignItems: "baseline" }}
+          >
             <a href="#mission" className="cml-link" style={mutedLink}>
               Mission
             </a>
@@ -277,6 +283,7 @@ export default function Home() {
 
         {/* Hero */}
         <section
+          className="cml-pad"
           style={{
             minHeight: "82vh",
             display: "flex",
@@ -309,6 +316,7 @@ export default function Home() {
               ref={heroRef}
               onMouseMove={onHeroMove}
               onMouseLeave={onHeroLeave}
+              className="cml-heroTitle"
               style={{
                 margin: 0,
                 fontSize: "clamp(64px, 10.5vw, 152px)",
@@ -347,6 +355,7 @@ export default function Home() {
             <div
               data-anno
               aria-hidden="true"
+              className="cml-measure"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -419,6 +428,7 @@ export default function Home() {
           {/* Term-structure curve: a faint yield curve drawing itself across the hero base */}
           <div
             aria-hidden="true"
+            className="cml-term"
             style={{
               position: "absolute",
               left: 24,
@@ -503,7 +513,10 @@ export default function Home() {
         </section>
 
         {/* Hairline divider with tick */}
-        <div style={{ display: "flex", alignItems: "center", padding: "0 24px" }}>
+        <div
+          className="cml-pad"
+          style={{ display: "flex", alignItems: "center", padding: "0 24px" }}
+        >
           <div
             style={{
               width: 8,
@@ -527,7 +540,11 @@ export default function Home() {
         </div>
 
         {/* Mission */}
-        <section id="mission" style={{ padding: "140px 24px 160px 24px" }}>
+        <section
+          id="mission"
+          className="cml-pad"
+          style={{ padding: "140px 24px 160px 24px" }}
+        >
           <div
             data-reveal
             style={{
@@ -570,7 +587,10 @@ export default function Home() {
         </section>
 
         {/* Hairline divider with tick */}
-        <div style={{ display: "flex", alignItems: "center", padding: "0 24px" }}>
+        <div
+          className="cml-pad"
+          style={{ display: "flex", alignItems: "center", padding: "0 24px" }}
+        >
           <div
             data-draw
             style={{
@@ -594,7 +614,11 @@ export default function Home() {
         </div>
 
         {/* Portfolio */}
-        <section id="portfolio" style={{ padding: "140px 24px 180px 24px" }}>
+        <section
+          id="portfolio"
+          className="cml-pad"
+          style={{ padding: "140px 24px 180px 24px" }}
+        >
           <div
             data-reveal
             style={{
@@ -628,6 +652,7 @@ export default function Home() {
             }}
           >
             <div
+              className="cml-aqua-grid"
               style={{
                 display: "grid",
                 gridTemplateColumns: "minmax(0, 1fr) auto",
@@ -681,6 +706,7 @@ export default function Home() {
         {/* Footer */}
         <footer
           data-reveal
+          className="cml-pad"
           style={{
             borderTop: "1px solid rgba(139, 133, 122, 0.28)",
             padding: "48px 24px 56px 24px",
