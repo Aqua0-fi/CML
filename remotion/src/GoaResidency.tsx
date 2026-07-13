@@ -2,11 +2,12 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { loadFont } from "@remotion/google-fonts/Fraunces";
 
-loadFont();
+const { fontFamily } = loadFont();
 
 const CREAM = "#F4F1EA";
 const INK = "#16130F";
 const RED = "#6B2224";
+const MUTED = "#8B857A";
 const HAIR = "rgba(139, 133, 122, 0.55)";
 
 const TAU = Math.PI * 2;
@@ -59,28 +60,39 @@ function openingD() {
   } ${X2} ${SPRING} L ${X2} ${SILL} Z`;
 }
 
-// DeFi, quietly: a term-structure curve + a couple of nodes in the sky
-const CURVE = "M 430 296 C 560 276 660 236 760 214 C 830 198 862 190 878 186";
-const NODES: { x: number; y: number; accent?: boolean }[] = [
-  { x: 560, y: 276 },
-  { x: 760, y: 214, accent: true },
+// ---- DeFi network in the sky (seen through the window) ----
+type Net = { x: number; y: number; token?: boolean; label?: string; lx?: number; ly?: number; anchor?: "start" | "middle" | "end" };
+const NET: Net[] = [
+  { x: 640, y: 150, token: true, label: "DeFi", lx: 0, ly: -18, anchor: "middle" },
+  { x: 522, y: 212, label: "TVL", lx: 0, ly: -16, anchor: "middle" },
+  { x: 762, y: 198, token: true, label: "Yield", lx: 15, ly: 3 },
+  { x: 566, y: 292 },
+  { x: 712, y: 286, label: "Swaps", lx: 14, ly: 16 },
+  { x: 634, y: 226 },
 ];
+const EDGES: [number, number][] = [
+  [0, 1], [0, 2], [1, 5], [2, 5], [5, 3], [5, 4], [3, 4], [1, 3], [2, 4],
+];
+const PULSE_CYCLE = [1, 0, 2, 4, 3, 1]; // closed loop for the travelling pulse
 
-const Diamond: React.FC<{ x: number; y: number; accent?: boolean; i: number }> =
-  ({ x, y, accent, i }) => {
-    const frame = useCurrentFrame();
-    const { durationInFrames } = useVideoConfig();
-    const p = frame / durationInFrames;
-    const s = 5.5 * (1 + 0.18 * Math.sin(p * 3 * TAU + i));
+const NetNode: React.FC<{ n: Net; i: number }> = ({ n, i }) => {
+  const frame = useCurrentFrame();
+  const { durationInFrames } = useVideoConfig();
+  const p = frame / durationInFrames;
+  const pulse = 1 + 0.16 * Math.sin(p * 3 * TAU + i);
+  if (n.token) {
+    const s = 6.5 * pulse;
     return (
       <path
-        d={`M ${x} ${y - s} L ${x + s} ${y} L ${x} ${y + s} L ${x - s} ${y} Z`}
-        fill={accent ? RED : CREAM}
-        stroke={accent ? RED : INK}
+        d={`M ${n.x} ${n.y - s} L ${n.x + s} ${n.y} L ${n.x} ${n.y + s} L ${n.x - s} ${n.y} Z`}
+        fill={RED}
+        stroke={RED}
         strokeWidth={1.5}
       />
     );
-  };
+  }
+  return <circle cx={n.x} cy={n.y} r={5 * pulse} fill={CREAM} stroke={INK} strokeWidth={1.8} />;
+};
 
 export const GoaResidency: React.FC = () => {
   const frame = useCurrentFrame();
@@ -89,6 +101,15 @@ export const GoaResidency: React.FC = () => {
 
   const sunPulse = 1 + 0.03 * Math.sin(p * 2 * TAU);
 
+  // travelling data pulse around the network (seamless loop)
+  const cyc = PULSE_CYCLE.map((i) => NET[i]);
+  const segs = cyc.length - 1;
+  const u = (p % 1) * segs;
+  const si = Math.floor(u) % segs;
+  const f = u - Math.floor(u);
+  const pulseX = cyc[si].x + (cyc[si + 1].x - cyc[si].x) * f;
+  const pulseY = cyc[si].y + (cyc[si + 1].y - cyc[si].y) * f;
+
   // Sheer curtain on the left, breathing in the breeze
   const curtain: string[] = [];
   for (let i = 0; i < 5; i++) {
@@ -96,33 +117,24 @@ export const GoaResidency: React.FC = () => {
     const billow = 26 + 14 * Math.sin(p * 2 * TAU + i * 0.7);
     const top = 96 + i * 4;
     curtain.push(
-      `M ${baseX} ${top} C ${baseX + billow} ${top + 150} ${
-        baseX + billow
-      } ${top + 300} ${baseX} 560`,
+      `M ${baseX} ${top} C ${baseX + billow} ${top + 150} ${baseX + billow} ${top + 300} ${baseX} 560`,
     );
   }
 
-  // Steam rising from the cup, drifting with the breeze
+  // Steam rising from the cup
   const steam: string[] = [];
   for (let i = 0; i < 2; i++) {
     const sx = 828 + i * 14;
     const drift = 6 * Math.sin(p * 2 * TAU + i * 1.4);
     steam.push(
-      `M ${sx} 584 C ${sx - 8 - drift} 566 ${sx + 8 + drift} 548 ${
-        sx - drift
-      } 528 C ${sx - 6 - drift} 514 ${sx + 4} 502 ${sx} 492`,
+      `M ${sx} 584 C ${sx - 8 - drift} 566 ${sx + 8 + drift} 548 ${sx - drift} 528 C ${sx - 6 - drift} 514 ${sx + 4} 502 ${sx} 492`,
     );
   }
   const steamFade = 0.28 + 0.1 * Math.sin(p * 2 * TAU);
 
   return (
     <AbsoluteFill style={{ backgroundColor: CREAM }}>
-      <svg
-        viewBox="0 0 1280 720"
-        width="1280"
-        height="720"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg viewBox="0 0 1280 720" width="1280" height="720" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <clipPath id="win">
             <path d={openingD()} />
@@ -159,28 +171,51 @@ export const GoaResidency: React.FC = () => {
             );
           })}
 
-          {/* DeFi, quietly */}
-          <P d={CURVE} stroke={INK} sw={1.4} opacity={0.45} />
-          {NODES.map((n, i) => (
-            <Diamond key={i} x={n.x} y={n.y} accent={n.accent} i={i} />
+          {/* ---- DeFi network, in the sky ---- */}
+          {EDGES.map(([a, b], i) => (
+            <P
+              key={`e${i}`}
+              d={`M ${NET[a].x} ${NET[a].y} L ${NET[b].x} ${NET[b].y}`}
+              stroke={INK}
+              sw={1.1}
+              opacity={0.4}
+            />
+          ))}
+          {/* travelling data pulse */}
+          <circle cx={pulseX} cy={pulseY} r={4} fill={RED} />
+          {NET.map((n, i) => (
+            <NetNode key={`n${i}`} n={n} i={i} />
+          ))}
+          {/* blueprint-style annotations */}
+          {NET.filter((n) => n.label).map((n, i) => (
+            <text
+              key={`l${i}`}
+              x={n.x + (n.lx ?? 12)}
+              y={n.y + (n.ly ?? -12)}
+              fontSize={13}
+              letterSpacing={2}
+              fill={MUTED}
+              fontFamily={fontFamily}
+              textAnchor={n.anchor ?? "start"}
+              style={{ textTransform: "uppercase" }}
+            >
+              {n.label}
+            </text>
           ))}
 
           {/* Sheer curtain, breathing */}
           {curtain.map((d, i) => (
-            <P key={i} d={d} stroke={HAIR} sw={1.2} opacity={0.6} />
+            <P key={`c${i}`} d={d} stroke={HAIR} sw={1.2} opacity={0.55} />
           ))}
         </g>
 
         {/* ---- Window frame (foreground) ---- */}
-        {/* outer molding */}
         <P d={`M ${X1 - 16} ${SILL} L ${X1 - 16} ${SPRING}`} sw={2} />
         <P d={`M ${X2 + 16} ${SILL} L ${X2 + 16} ${SPRING}`} sw={2} />
         <P d={archTop(X1 - 16, X2 + 16, SPRING)} sw={2} />
-        {/* inner reveal */}
         <P d={`M ${X1} ${SILL} L ${X1} ${SPRING}`} sw={2} />
         <P d={`M ${X2} ${SILL} L ${X2} ${SPRING}`} sw={2} />
         <P d={archTop(X1, X2, SPRING)} sw={2} />
-        {/* keystone */}
         <P d={`M 640 ${SPRING - R} L 640 ${SPRING - R - 16}`} stroke={HAIR} sw={1.3} />
 
         {/* Sill */}
@@ -191,7 +226,7 @@ export const GoaResidency: React.FC = () => {
 
         {/* A cup of chai on the sill, with rising steam */}
         {steam.map((d, i) => (
-          <P key={i} d={d} stroke={HAIR} sw={1.3} opacity={steamFade} />
+          <P key={`s${i}`} d={d} stroke={HAIR} sw={1.3} opacity={steamFade} />
         ))}
         <P d="M 812 578 L 856 578" sw={1.6} />
         <P d="M 814 578 L 818 596 Q 834 604 850 596 L 854 578" sw={1.6} />
