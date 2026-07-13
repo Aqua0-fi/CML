@@ -63,11 +63,11 @@ function openingD() {
 // ---- DeFi network in the sky (seen through the window) ----
 type Net = { x: number; y: number; token?: boolean; label?: string; lx?: number; ly?: number; anchor?: "start" | "middle" | "end" };
 const NET: Net[] = [
-  { x: 640, y: 150, token: true, label: "DeFi", lx: 0, ly: -18, anchor: "middle" },
-  { x: 522, y: 212, label: "TVL", lx: 0, ly: -16, anchor: "middle" },
-  { x: 762, y: 198, token: true, label: "Yield", lx: 15, ly: 3 },
+  { x: 640, y: 150, token: true, label: "DeFi", lx: 0, ly: -16, anchor: "middle" },
+  { x: 522, y: 212 },
+  { x: 762, y: 198 },
   { x: 566, y: 292 },
-  { x: 712, y: 286, label: "Swaps", lx: 14, ly: 16 },
+  { x: 712, y: 286 },
   { x: 634, y: 226 },
 ];
 const EDGES: [number, number][] = [
@@ -79,19 +79,20 @@ const NetNode: React.FC<{ n: Net; i: number }> = ({ n, i }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const p = frame / durationInFrames;
-  const pulse = 1 + 0.16 * Math.sin(p * 3 * TAU + i);
+  const pulse = 1 + 0.1 * Math.sin(p * 3 * TAU + i);
   if (n.token) {
-    const s = 6.5 * pulse;
+    const s = 5 * pulse;
     return (
       <path
         d={`M ${n.x} ${n.y - s} L ${n.x + s} ${n.y} L ${n.x} ${n.y + s} L ${n.x - s} ${n.y} Z`}
         fill={RED}
         stroke={RED}
-        strokeWidth={1.5}
+        strokeWidth={1.2}
+        opacity={0.9}
       />
     );
   }
-  return <circle cx={n.x} cy={n.y} r={5 * pulse} fill={CREAM} stroke={INK} strokeWidth={1.8} />;
+  return <circle cx={n.x} cy={n.y} r={3.6 * pulse} fill={CREAM} stroke={MUTED} strokeWidth={1.3} />;
 };
 
 export const GoaResidency: React.FC = () => {
@@ -176,13 +177,13 @@ export const GoaResidency: React.FC = () => {
             <P
               key={`e${i}`}
               d={`M ${NET[a].x} ${NET[a].y} L ${NET[b].x} ${NET[b].y}`}
-              stroke={INK}
-              sw={1.1}
-              opacity={0.4}
+              stroke={MUTED}
+              sw={0.9}
+              opacity={0.3}
             />
           ))}
           {/* travelling data pulse */}
-          <circle cx={pulseX} cy={pulseY} r={4} fill={RED} />
+          <circle cx={pulseX} cy={pulseY} r={2.8} fill={RED} opacity={0.85} />
           {NET.map((n, i) => (
             <NetNode key={`n${i}`} n={n} i={i} />
           ))}
@@ -192,11 +193,12 @@ export const GoaResidency: React.FC = () => {
               key={`l${i}`}
               x={n.x + (n.lx ?? 12)}
               y={n.y + (n.ly ?? -12)}
-              fontSize={13}
-              letterSpacing={2}
+              fontSize={11}
+              letterSpacing={2.5}
               fill={MUTED}
               fontFamily={fontFamily}
               textAnchor={n.anchor ?? "start"}
+              opacity={0.7}
               style={{ textTransform: "uppercase" }}
             >
               {n.label}
