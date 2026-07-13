@@ -171,31 +171,41 @@ export const GoaResidency: React.FC = () => {
             <tspan {...IT} fill={RED}>k</tspan>
           </Formula>
 
-          {/* Continuous compounding: A = P e^{rt} */}
-          <Formula x={764} y={244} size={22} op={0.5} phase={1.4}>
-            <tspan {...IT}>A</tspan>
+          {/* Utilisation (lending markets): U = B / (B + C) */}
+          <Formula x={748} y={242} size={21} op={0.5} phase={1.4}>
+            <tspan {...IT}>U</tspan>
             <tspan>{"  =  "}</tspan>
-            <tspan {...IT}>P e</tspan>
-            <tspan {...IT} fontSize={14} dy={-8}>rt</tspan>
-          </Formula>
-
-          {/* Liquidity: L = √(x·y) */}
-          <Formula x={506} y={300} size={22} op={0.5} phase={2.6}>
-            <tspan {...IT}>L</tspan>
-            <tspan>{"  =  √( "}</tspan>
-            <tspan {...IT}>x</tspan>
-            <tspan> · </tspan>
-            <tspan {...IT}>y</tspan>
+            <tspan {...IT}>B</tspan>
+            <tspan>{" / ( "}</tspan>
+            <tspan {...IT}>B</tspan>
+            <tspan>{" + "}</tspan>
+            <tspan {...IT}>C</tspan>
             <tspan>{" )"}</tspan>
           </Formula>
 
-          {/* A stochastic differential: dV = μV dt + σV dW */}
-          <Formula x={632} y={332} size={16} op={0.42} phase={3.7}>
-            <tspan {...IT}>dV</tspan>
-            <tspan>{"  =  μ"}</tspan>
-            <tspan {...IT}>V dt</tspan>
-            <tspan>{"  +  σ"}</tspan>
-            <tspan {...IT}>V dW</tspan>
+          {/* Impermanent loss: IL = 2√r / (1 + r) − 1 */}
+          <Formula x={508} y={300} size={20} op={0.5} phase={2.6}>
+            <tspan {...IT}>IL</tspan>
+            <tspan>{"  =  2√"}</tspan>
+            <tspan {...IT}>r</tspan>
+            <tspan>{" / (1 + "}</tspan>
+            <tspan {...IT}>r</tspan>
+            <tspan>{" ) − 1"}</tspan>
+          </Formula>
+
+          {/* Swap with fee γ (AMM): Δy = γ y Δx / (x + γ Δx) */}
+          <Formula x={636} y={334} size={15} op={0.42} phase={3.7}>
+            <tspan>{"Δ"}</tspan>
+            <tspan {...IT}>y</tspan>
+            <tspan>{"  =  γ "}</tspan>
+            <tspan {...IT}>y</tspan>
+            <tspan>{" Δ"}</tspan>
+            <tspan {...IT}>x</tspan>
+            <tspan>{"  / ( "}</tspan>
+            <tspan {...IT}>x</tspan>
+            <tspan>{" + γ Δ"}</tspan>
+            <tspan {...IT}>x</tspan>
+            <tspan>{" )"}</tspan>
           </Formula>
 
           {/* Sheer curtain, breathing */}
