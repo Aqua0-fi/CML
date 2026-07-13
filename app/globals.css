@@ -30,6 +30,23 @@ a:hover {
   color: #16130f;
 }
 
+/* Outline button (e.g. "See deck") — fills with ink on hover */
+.cml-deck-btn {
+  transition: background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cml-deck-btn:hover {
+  background: #16130f;
+  color: #f4f1ea;
+}
+.cml-deck-btn .cml-deck-arrow {
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cml-deck-btn:hover .cml-deck-arrow {
+  transform: translateX(5px);
+}
+
 @keyframes cml-hero-rise {
   from {
     opacity: 0;

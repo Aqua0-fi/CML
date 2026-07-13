@@ -142,6 +142,27 @@ export default function ResidencyGoaPage() {
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
+
+          {/* TODO: point to the deck once it's built (e.g. /residency-goa/deck) */}
+          <div style={{ marginTop: 52 }}>
+            <a
+              href="#"
+              className="cml-deck-btn"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 12,
+                padding: "15px 30px",
+                border: "1px solid #16130F",
+                fontSize: 13,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#16130F",
+              }}
+            >
+              See Deck <span className="cml-deck-arrow">→</span>
+            </a>
+          </div>
         </div>
       </div>
 
