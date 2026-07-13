@@ -730,24 +730,15 @@ export default function Home() {
           >
             Cross Margin Labs, Inc. · Delaware, USA · 2026
           </div>
-          <div style={{ display: "flex", gap: 40, alignItems: "baseline" }}>
-            <a
-              href="mailto:contact@crossmarginlabs.com"
-              className="cml-link"
-              style={mutedLink}
-            >
-              Contact
-            </a>
-            <div
-              style={{
-                fontSize: 13,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#8B857A",
-              }}
-            >
-              © 2026 Cross Margin Labs, Inc.
-            </div>
+          <div
+            style={{
+              fontSize: 13,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "#8B857A",
+            }}
+          >
+            © 2026 Cross Margin Labs, Inc.
           </div>
         </footer>
       </div>
