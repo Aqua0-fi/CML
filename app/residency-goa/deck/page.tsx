@@ -83,16 +83,16 @@ const SLIDES: Slide[] = [
         Residency Goa<span style={accent}>.</span>
       </>
     ),
-    body: "Three weeks in Goa to build the next DeFi primitives — and validate the business around them.",
+    body: "Three weeks in Goa to build the next DeFi primitives and validate the business around them.",
     foot: "Goa, India",
     motif: "/deck/cover.gif",
   },
   {
-    kicker: "01 — Origin",
+    kicker: "01 · Origin",
     title: "It started at Edge City.",
     body: (
       <>
-        We met at Edge City, Patagonia, at the Vibe Code Residency — the room
+        We met at Edge City, Patagonia, at the Vibe Code Residency, the room
         where <span style={accent}>Aqua0</span> was born: where a founder met
         his CTO, and an idea became infrastructure. Edge City is home to us.
       </>
@@ -100,20 +100,20 @@ const SLIDES: Slide[] = [
     motif: "/deck/origin.gif",
   },
   {
-    kicker: "02 — The goal",
+    kicker: "02 · The goal",
     title: "Build the next DeFi primitives.",
-    body: "Three weeks to create real innovations in DeFi — deepening liquidity and making core primitives more efficient. The kind of work that became Aqua0.",
+    body: "Three weeks to create real innovations in DeFi: deepening liquidity and making core primitives more efficient. The kind of work that became Aqua0.",
     motif: "/deck/goal.gif",
   },
   {
-    kicker: "03 — Who it's for",
+    kicker: "03 · Who it's for",
     title: "Engineers and go-to-market, in balance.",
-    body: "We're not just shipping a proof of concept — we're validating a business. So we pair strong engineers with go-to-market builders.",
-    foot: "6–10 builders · plus the Aqua0 team already on the ground",
+    body: "We're not just shipping a proof of concept. We're validating a business. So we pair strong engineers with go-to-market builders.",
+    foot: "6-10 builders · plus the Aqua0 team already on the ground",
     motif: "/deck/who.gif",
   },
   {
-    kicker: "04 — What's included",
+    kicker: "04 · What's included",
     title: "On us.",
     body: (
       <div style={{ display: "grid", gap: 18, maxWidth: 560 }}>
@@ -125,7 +125,7 @@ const SLIDES: Slide[] = [
     motif: "/deck/included.gif",
   },
   {
-    kicker: "05 — Partners",
+    kicker: "05 · Partners",
     title: "Powered by our partners.",
     body: (
       <div>
@@ -141,7 +141,7 @@ const SLIDES: Slide[] = [
           1inch
         </div>
         <div style={{ marginTop: 18, color: MUTED, fontSize: "clamp(16px, 1.9vw, 22px)", lineHeight: 1.5 }}>
-          Our first technology partner — with more sponsors joining the
+          Our first technology partner, with more sponsors joining the
           residency.
         </div>
       </div>
@@ -149,7 +149,7 @@ const SLIDES: Slide[] = [
     motif: "/deck/sponsors.gif",
   },
   {
-    kicker: "06 — The three weeks",
+    kicker: "06 · The three weeks",
     title: (
       <>
         In with an idea.
@@ -160,12 +160,12 @@ const SLIDES: Slide[] = [
     body: (
       <div style={{ display: "grid", gap: 20, maxWidth: 640 }}>
         <Week n="Week 01">
-          Plan &amp; prototype — scope the idea and build a working proof of
+          Plan &amp; prototype: scope the idea and build a working proof of
           concept.
         </Week>
-        <Week n="Week 02">Build — turn the PoC into a working MVP.</Week>
+        <Week n="Week 02">Build: turn the PoC into a working MVP.</Week>
         <Week n="Week 03">
-          Validate — take it to the market and gather real validation.
+          Validate: take it to the market and gather real validation.
         </Week>
       </div>
     ),
