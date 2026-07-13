@@ -48,6 +48,22 @@ a:hover {
   transform: translateX(5px);
 }
 
+/* Deck slide layout: text + a small motif */
+.deck-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(240px, 28vw, 380px);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+@media (max-width: 860px) {
+  .deck-grid {
+    grid-template-columns: 1fr;
+  }
+  .deck-motif {
+    display: none;
+  }
+}
+
 @keyframes cml-hero-rise {
   from {
     opacity: 0;

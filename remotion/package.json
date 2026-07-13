@@ -6,7 +6,9 @@
     "studio": "remotion studio",
     "render": "remotion render CrossMarginLabs out/cross-margin-labs.gif",
     "render:goa": "remotion render GoaResidency out/residency-goa-scene.gif",
-    "still:goa": "remotion still GoaResidency out/goa-still.png --frame=165"
+    "still:goa": "remotion still GoaResidency out/goa-still.png --frame=165",
+    "still:motifs": "remotion still motif-sheet out/motif-sheet.png --frame=36",
+    "render:motifs": "remotion render motif-cover out/deck/cover.gif && remotion render motif-origin out/deck/origin.gif && remotion render motif-goal out/deck/goal.gif && remotion render motif-who out/deck/who.gif && remotion render motif-included out/deck/included.gif && remotion render motif-weeks out/deck/weeks.gif && remotion render motif-sponsors out/deck/sponsors.gif && remotion render motif-close out/deck/close.gif"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
