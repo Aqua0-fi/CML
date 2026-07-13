@@ -143,10 +143,9 @@ export default function ResidencyGoaPage() {
             />
           </div>
 
-          {/* TODO: point to the deck once it's built (e.g. /residency-goa/deck) */}
           <div style={{ marginTop: 52 }}>
-            <a
-              href="#"
+            <Link
+              href="/residency-goa/deck"
               className="cml-deck-btn"
               style={{
                 display: "inline-flex",
@@ -160,7 +159,7 @@ export default function ResidencyGoaPage() {
               }}
             >
               See Deck <span className="cml-deck-arrow">→</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
