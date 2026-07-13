@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "studio": "remotion studio",
-    "render": "remotion render CrossMarginLabs out/cross-margin-labs.gif"
+    "render": "remotion render CrossMarginLabs out/cross-margin-labs.gif",
+    "render:goa": "remotion render GoaResidency out/residency-goa-scene.gif",
+    "still:goa": "remotion still GoaResidency out/goa-still.png --frame=165"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
