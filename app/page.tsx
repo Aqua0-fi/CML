@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-// External link for the Aqua0 portfolio card (was the `aquaUrl` design prop; default "#").
-const AQUA_URL = "#";
+// External link for the Aqua0 portfolio card (was the `aquaUrl` design prop).
+const AQUA_URL = "https://aqua0.xyz";
 
 const GRAIN_BG =
   "url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22240%22 height=%22240%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')";
@@ -610,6 +610,8 @@ export default function Home() {
 
           <a
             href={AQUA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             data-aqua-card
             data-reveal
             data-reveal-delay="0.18"
