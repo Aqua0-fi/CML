@@ -157,7 +157,6 @@ export default function ResidencyGoaPage() {
                 fontSize: 13,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#6B2224",
               }}
             >
               See Deck <span className="cml-deck-arrow">→</span>

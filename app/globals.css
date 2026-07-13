@@ -30,8 +30,9 @@ a:hover {
   color: #16130f;
 }
 
-/* Outline button (e.g. "See deck") — fills with ink on hover */
+/* Outline button (e.g. "See deck") — accent red, fills on hover */
 .cml-deck-btn {
+  color: #6b2224;
   transition: background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
