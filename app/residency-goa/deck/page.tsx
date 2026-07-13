@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 const INK = "#16130F";
@@ -294,14 +293,13 @@ export default function DeckPage() {
           </div>
 
           {s.motif ? (
-            <div className="deck-motif" style={{ justifySelf: "center" }}>
-              <Image
+            <div className="deck-motif">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={s.motif}
                 alt=""
                 width={480}
                 height={420}
-                unoptimized
-                priority
                 style={{ width: "100%", height: "auto", display: "block" }}
               />
             </div>
