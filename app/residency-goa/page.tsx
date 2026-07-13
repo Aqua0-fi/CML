@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -120,6 +121,25 @@ export default function ResidencyGoaPage() {
                 height: 1,
                 background: "rgba(139, 133, 122, 0.5)",
               }}
+            />
+          </div>
+
+          {/* Ambient scene — its cream background blends into the page */}
+          <div
+            style={{
+              width: "100%",
+              maxWidth: 820,
+              margin: "44px auto 0",
+            }}
+          >
+            <Image
+              src="/residency-goa-scene.gif"
+              alt="A Portuguese-colonial villa by the sea in Goa, with a constellation of DeFi concepts forming above it."
+              width={1280}
+              height={720}
+              unoptimized
+              priority
+              style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
         </div>
