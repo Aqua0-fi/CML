@@ -60,40 +60,38 @@ function openingD() {
   } ${X2} ${SPRING} L ${X2} ${SILL} Z`;
 }
 
-// ---- DeFi network in the sky (seen through the window) ----
-type Net = { x: number; y: number; token?: boolean; label?: string; lx?: number; ly?: number; anchor?: "start" | "middle" | "end" };
-const NET: Net[] = [
-  { x: 640, y: 150, token: true, label: "DeFi", lx: 0, ly: -16, anchor: "middle" },
-  { x: 522, y: 212 },
-  { x: 762, y: 198 },
-  { x: 566, y: 292 },
-  { x: 712, y: 286 },
-  { x: 634, y: 226 },
-];
-const EDGES: [number, number][] = [
-  [0, 1], [0, 2], [1, 5], [2, 5], [5, 3], [5, 4], [3, 4], [1, 3], [2, 4],
-];
-const PULSE_CYCLE = [1, 0, 2, 4, 3, 1]; // closed loop for the travelling pulse
-
-const NetNode: React.FC<{ n: Net; i: number }> = ({ n, i }) => {
+// A softly-breathing, drifting mathematical formula in the sky
+const Formula: React.FC<{
+  x: number;
+  y: number;
+  size: number;
+  op: number;
+  phase: number;
+  children: React.ReactNode;
+}> = ({ x, y, size, op, phase, children }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const p = frame / durationInFrames;
-  const pulse = 1 + 0.1 * Math.sin(p * 3 * TAU + i);
-  if (n.token) {
-    const s = 5 * pulse;
-    return (
-      <path
-        d={`M ${n.x} ${n.y - s} L ${n.x + s} ${n.y} L ${n.x} ${n.y + s} L ${n.x - s} ${n.y} Z`}
-        fill={RED}
-        stroke={RED}
-        strokeWidth={1.2}
-        opacity={0.9}
-      />
-    );
-  }
-  return <circle cx={n.x} cy={n.y} r={3.6 * pulse} fill={CREAM} stroke={MUTED} strokeWidth={1.3} />;
+  const breathe = 0.78 + 0.22 * Math.sin(p * 2 * TAU + phase);
+  const dy = 2.4 * Math.sin(p * 2 * TAU + phase * 1.3);
+  return (
+    <g opacity={op * breathe} transform={`translate(0 ${dy})`}>
+      <text
+        x={x}
+        y={y}
+        textAnchor="middle"
+        fontFamily={fontFamily}
+        fontSize={size}
+        fill={INK}
+        letterSpacing={0.5}
+      >
+        {children}
+      </text>
+    </g>
+  );
 };
+
+const IT = { fontStyle: "italic" as const };
 
 export const GoaResidency: React.FC = () => {
   const frame = useCurrentFrame();
@@ -101,15 +99,6 @@ export const GoaResidency: React.FC = () => {
   const p = frame / durationInFrames;
 
   const sunPulse = 1 + 0.03 * Math.sin(p * 2 * TAU);
-
-  // travelling data pulse around the network (seamless loop)
-  const cyc = PULSE_CYCLE.map((i) => NET[i]);
-  const segs = cyc.length - 1;
-  const u = (p % 1) * segs;
-  const si = Math.floor(u) % segs;
-  const f = u - Math.floor(u);
-  const pulseX = cyc[si].x + (cyc[si + 1].x - cyc[si].x) * f;
-  const pulseY = cyc[si].y + (cyc[si + 1].y - cyc[si].y) * f;
 
   // Sheer curtain on the left, breathing in the breeze
   const curtain: string[] = [];
@@ -172,38 +161,42 @@ export const GoaResidency: React.FC = () => {
             );
           })}
 
-          {/* ---- DeFi network, in the sky ---- */}
-          {EDGES.map(([a, b], i) => (
-            <P
-              key={`e${i}`}
-              d={`M ${NET[a].x} ${NET[a].y} L ${NET[b].x} ${NET[b].y}`}
-              stroke={MUTED}
-              sw={0.9}
-              opacity={0.3}
-            />
-          ))}
-          {/* travelling data pulse */}
-          <circle cx={pulseX} cy={pulseY} r={2.8} fill={RED} opacity={0.85} />
-          {NET.map((n, i) => (
-            <NetNode key={`n${i}`} n={n} i={i} />
-          ))}
-          {/* blueprint-style annotations */}
-          {NET.filter((n) => n.label).map((n, i) => (
-            <text
-              key={`l${i}`}
-              x={n.x + (n.lx ?? 12)}
-              y={n.y + (n.ly ?? -12)}
-              fontSize={11}
-              letterSpacing={2.5}
-              fill={MUTED}
-              fontFamily={fontFamily}
-              textAnchor={n.anchor ?? "start"}
-              opacity={0.7}
-              style={{ textTransform: "uppercase" }}
-            >
-              {n.label}
-            </text>
-          ))}
+          {/* ---- DeFi as quiet mathematics, drifting in the sky ---- */}
+          {/* Constant-product AMM: x·y = k */}
+          <Formula x={628} y={168} size={34} op={0.62} phase={0}>
+            <tspan {...IT}>x</tspan>
+            <tspan> · </tspan>
+            <tspan {...IT}>y</tspan>
+            <tspan>{"  =  "}</tspan>
+            <tspan {...IT} fill={RED}>k</tspan>
+          </Formula>
+
+          {/* Continuous compounding: A = P e^{rt} */}
+          <Formula x={764} y={244} size={22} op={0.5} phase={1.4}>
+            <tspan {...IT}>A</tspan>
+            <tspan>{"  =  "}</tspan>
+            <tspan {...IT}>P e</tspan>
+            <tspan {...IT} fontSize={14} dy={-8}>rt</tspan>
+          </Formula>
+
+          {/* Liquidity: L = √(x·y) */}
+          <Formula x={506} y={300} size={22} op={0.5} phase={2.6}>
+            <tspan {...IT}>L</tspan>
+            <tspan>{"  =  √( "}</tspan>
+            <tspan {...IT}>x</tspan>
+            <tspan> · </tspan>
+            <tspan {...IT}>y</tspan>
+            <tspan>{" )"}</tspan>
+          </Formula>
+
+          {/* A stochastic differential: dV = μV dt + σV dW */}
+          <Formula x={632} y={332} size={16} op={0.42} phase={3.7}>
+            <tspan {...IT}>dV</tspan>
+            <tspan>{"  =  μ"}</tspan>
+            <tspan {...IT}>V dt</tspan>
+            <tspan>{"  +  σ"}</tspan>
+            <tspan {...IT}>V dW</tspan>
+          </Formula>
 
           {/* Sheer curtain, breathing */}
           {curtain.map((d, i) => (
