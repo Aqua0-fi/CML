@@ -153,11 +153,11 @@ export default function ResidencyGoaPage() {
                 alignItems: "center",
                 gap: 12,
                 padding: "15px 30px",
-                border: "1px solid #16130F",
+                border: "1px solid #6B2224",
                 fontSize: 13,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#16130F",
+                color: "#6B2224",
               }}
             >
               See Deck <span className="cml-deck-arrow">→</span>
