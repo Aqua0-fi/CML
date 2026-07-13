@@ -8,6 +8,8 @@ const CREAM = "#F4F1EA";
 const RED = "#6B2224";
 const MUTED = "#8B857A";
 const HAIR = "rgba(139, 133, 122, 0.28)";
+// Bump when the motif GIFs change so browsers don't serve a stale cached copy.
+const MOTIF_V = "3";
 
 type Slide = {
   kicker: string;
@@ -296,7 +298,7 @@ export default function DeckPage() {
             <div className="deck-motif">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={s.motif}
+                src={`${s.motif}?v=${MOTIF_V}`}
                 alt=""
                 width={480}
                 height={420}
