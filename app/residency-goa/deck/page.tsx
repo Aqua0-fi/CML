@@ -93,8 +93,8 @@ const SLIDES: Slide[] = [
     body: (
       <>
         We met at Edge City, Patagonia, at the Vibe Code Residency, the room
-        where <span style={accent}>Aqua0</span> was born: where a founder met
-        his CTO, and an idea became infrastructure. Edge City is home to us.
+        where <span style={accent}>Aqua0</span> was born and an idea became
+        infrastructure. Edge City is home to us.
       </>
     ),
     motif: "/deck/origin.gif",
