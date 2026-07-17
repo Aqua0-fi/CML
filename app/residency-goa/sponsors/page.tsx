@@ -253,7 +253,7 @@ const SLIDES: Slide[] = [
             textTransform: "uppercase",
           }}
         >
-          Become a Sponsor <span className="cml-deck-arrow">→</span>
+          Let&apos;s Talk <span className="cml-deck-arrow">→</span>
         </a>
       </div>
     ),
