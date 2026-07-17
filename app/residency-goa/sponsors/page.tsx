@@ -143,21 +143,26 @@ const SLIDES: Slide[] = [
     kicker: "02 · Why sponsor",
     title: "What you take home.",
     body: (
-      <div style={{ display: "grid", gap: 16, maxWidth: 620 }}>
+      <div style={{ display: "grid", gap: 15, maxWidth: 640 }}>
         <Bullet>
-          Products on your stack: working liquidity tools built on your
-          technology.
+          New use cases for your tech: teams take your stack where your
+          roadmap hasn&apos;t gone yet, and ship it.
+        </Bullet>
+        <Bullet>
+          Cross-protocol rooms: three weeks next to other protocols, where
+          integrations and composability actually happen.
+        </Bullet>
+        <Bullet>
+          Builders fluent in your stack: senior engineers go deep in your
+          docs and contracts, and leave as integrators and potential hires.
+        </Bullet>
+        <Bullet>
+          Real market signal: week three puts what was built on your
+          technology in front of users.
         </Bullet>
         <Bullet>
           Deal flow, first: first look at what ships, first right to keep
           building it.
-        </Bullet>
-        <Bullet>
-          Talent: three weeks embedded with senior DeFi engineers and
-          go-to-market builders.
-        </Bullet>
-        <Bullet>
-          Brand: your name across the residency and on stage at Edge City.
         </Bullet>
       </div>
     ),
