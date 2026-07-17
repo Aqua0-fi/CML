@@ -143,7 +143,15 @@ export default function ResidencyGoaPage() {
             />
           </div>
 
-          <div style={{ marginTop: 52 }}>
+          <div
+            style={{
+              marginTop: 52,
+              display: "flex",
+              gap: 16,
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
             <Link
               href="/residency-goa/deck"
               className="cml-deck-btn"
@@ -160,6 +168,23 @@ export default function ResidencyGoaPage() {
             >
               See Deck <span className="cml-deck-arrow">→</span>
             </Link>
+            {/* TODO: point to the sponsors deck once it's built (e.g. /residency-goa/sponsors) */}
+            <a
+              href="#"
+              className="cml-btn-ink"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 12,
+                padding: "15px 30px",
+                border: "1px solid #16130F",
+                fontSize: 13,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+              }}
+            >
+              For Sponsors <span className="cml-deck-arrow">→</span>
+            </a>
           </div>
         </div>
       </div>

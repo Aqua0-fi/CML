@@ -48,6 +48,24 @@ a:hover {
   transform: translateX(5px);
 }
 
+/* Ink variant (e.g. "For sponsors") — fills with ink on hover */
+.cml-btn-ink {
+  color: #16130f;
+  transition: background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cml-btn-ink:hover {
+  background: #16130f;
+  color: #f4f1ea;
+}
+.cml-btn-ink .cml-deck-arrow {
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cml-btn-ink:hover .cml-deck-arrow {
+  transform: translateX(5px);
+}
+
 /* Deck slide layout: text + a small motif */
 .deck-grid {
   display: grid;
