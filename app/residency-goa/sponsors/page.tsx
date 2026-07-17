@@ -196,9 +196,10 @@ const SLIDES: Slide[] = [
           tag="Recommended"
           items={[
             "Everything in Tide",
-            "A team builds its liquidity PoC on your stack",
-            "A workshop or office hours with the residents",
-            "Direct line to the builders: talent and deal flow",
+            "A team ships a liquidity product on your stack: new use cases for your tech",
+            "Live demos every week: watch it grow from PoC to MVP to market",
+            "Your workshop with the residents: onboard them into your docs and contracts",
+            "Direct line to the builders: talent, integrations and deal flow",
           ]}
         />
         <Tier
@@ -207,8 +208,9 @@ const SLIDES: Slide[] = [
           items={[
             "Everything in Current",
             "Both products prioritize your stack",
+            "Private weekly demos with both teams, plus a roadmap session with yours",
             "Co-branding: the residency, powered by you",
-            "Private demo and first right to keep building",
+            "First right to keep building what ships: integrate or incubate it",
           ]}
         />
       </div>
