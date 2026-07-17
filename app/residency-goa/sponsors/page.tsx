@@ -131,13 +131,13 @@ const SLIDES: Slide[] = [
     ),
     body: "Back the residency where the next liquidity tools get built, on your technology.",
     foot: "Goa, India",
-    motif: "/deck/sponsors.gif",
+    motif: "/deck/sp-cover.gif",
   },
   {
     kicker: "01 · The residency",
     title: "Three weeks. Two products.",
     body: "Six to ten senior builders plus the Aqua0 team, three weeks on the Goan shore, taking liquidity ideas from plan to validated MVP.",
-    motif: "/deck/weeks.gif",
+    motif: "/deck/sp-weeks.gif",
   },
   {
     kicker: "02 · Why sponsor",
@@ -166,13 +166,13 @@ const SLIDES: Slide[] = [
         </Bullet>
       </div>
     ),
-    motif: "/deck/goal.gif",
+    motif: "/deck/sp-why.gif",
   },
   {
     kicker: "03 · The output",
     title: "Liquidity, made more efficient.",
     body: "Our thesis is capital efficiency: deeper liquidity and better primitives. Every product that leaves Goa is a liquidity tool your ecosystem keeps.",
-    motif: "/deck/cover.gif",
+    motif: "/deck/sp-output.gif",
   },
   {
     kicker: "04 · Sponsorship",
@@ -220,7 +220,7 @@ const SLIDES: Slide[] = [
     kicker: "05 · In good company",
     title: "Alongside 1inch.",
     body: "1inch is our founding technology partner. The partner bench is small on purpose: join it early.",
-    motif: "/deck/origin.gif",
+    motif: "/deck/sp-partner.gif",
   },
   {
     kicker: "Residency Goa",
@@ -233,7 +233,7 @@ const SLIDES: Slide[] = [
     ),
     body: "Cross Margin Labs, Inc. · Delaware, USA",
     foot: "© 2026 Cross Margin Labs, Inc.",
-    motif: "/deck/close.gif",
+    motif: "/deck/sp-close.gif",
   },
 ];
 

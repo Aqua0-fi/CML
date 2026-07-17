@@ -8,6 +8,8 @@
     "render:goa": "remotion render GoaResidency out/residency-goa-scene.gif",
     "still:goa": "remotion still GoaResidency out/goa-still.png --frame=165",
     "still:motifs": "remotion still motif-sheet out/motif-sheet.png --frame=36",
+    "still:sp": "remotion still sp-sheet out/sp-sheet.png --frame=36",
+    "render:sp": "remotion render sp-cover out/deck/sp-cover.gif && remotion render sp-weeks out/deck/sp-weeks.gif && remotion render sp-why out/deck/sp-why.gif && remotion render sp-output out/deck/sp-output.gif && remotion render sp-partner out/deck/sp-partner.gif && remotion render sp-close out/deck/sp-close.gif",
     "render:motifs": "remotion render motif-cover out/deck/cover.gif && remotion render motif-origin out/deck/origin.gif && remotion render motif-goal out/deck/goal.gif && remotion render motif-who out/deck/who.gif && remotion render motif-included out/deck/included.gif && remotion render motif-weeks out/deck/weeks.gif && remotion render motif-sponsors out/deck/sponsors.gif && remotion render motif-close out/deck/close.gif"
   },
   "dependencies": {
