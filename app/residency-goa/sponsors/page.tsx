@@ -231,7 +231,32 @@ const SLIDES: Slide[] = [
         together<span style={accent}>.</span>
       </>
     ),
-    body: "Cross Margin Labs, Inc. · Delaware, USA",
+    body: (
+      <div>
+        <div style={{ marginBottom: 36 }}>
+          Cross Margin Labs, Inc. · Delaware, USA
+        </div>
+        <a
+          href="https://calendar.app.google/8oD5St1imBwwz5ey7"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cml-deck-btn"
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 12,
+            padding: "15px 30px",
+            border: "1px solid #6B2224",
+            fontSize: 13,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+          }}
+        >
+          Become a Sponsor <span className="cml-deck-arrow">→</span>
+        </a>
+      </div>
+    ),
     foot: "© 2026 Cross Margin Labs, Inc.",
     motif: "/deck/sp-close.gif",
   },
