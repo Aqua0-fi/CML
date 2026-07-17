@@ -168,9 +168,8 @@ export default function ResidencyGoaPage() {
             >
               See Deck <span className="cml-deck-arrow">→</span>
             </Link>
-            {/* TODO: point to the sponsors deck once it's built (e.g. /residency-goa/sponsors) */}
-            <a
-              href="#"
+            <Link
+              href="/residency-goa/sponsors"
               className="cml-btn-ink"
               style={{
                 display: "inline-flex",
@@ -184,7 +183,7 @@ export default function ResidencyGoaPage() {
               }}
             >
               For Sponsors <span className="cml-deck-arrow">→</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

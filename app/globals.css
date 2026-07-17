@@ -66,6 +66,19 @@ a:hover {
   transform: translateX(5px);
 }
 
+/* Sponsorship tier cards */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+@media (max-width: 860px) {
+  .tier-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Deck slide layout: text + a small motif */
 .deck-grid {
   display: grid;
