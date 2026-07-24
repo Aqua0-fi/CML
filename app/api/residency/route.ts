@@ -34,11 +34,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const name = String(data.name ?? "").trim();
+  const REQUIRED = FIELDS.filter(
+    (f) => f !== "stayDates" && f !== "coverageSituation",
+  );
+  const missing = REQUIRED.filter(
+    (f) => String(data[f] ?? "").trim() === "",
+  );
   const email = String(data.email ?? "").trim();
-  if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (missing.length > 0 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ ok: false, error: "invalid" }, { status: 422 });
   }
+  const name = String(data.name).trim();
 
   const payload: Record<string, unknown> = {
     _subject: `Aqua0 Residency application: ${name}`,

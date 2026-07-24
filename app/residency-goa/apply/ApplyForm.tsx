@@ -327,7 +327,7 @@ export default function ApplyForm() {
             </section>
 
             {/* Form */}
-            <form onSubmit={onSubmit} noValidate style={{ padding: "48px 0 120px" }}>
+            <form onSubmit={onSubmit} style={{ padding: "48px 0 120px" }}>
               {/* honeypot */}
               <input
                 type="text"
@@ -408,9 +408,10 @@ export default function ApplyForm() {
                 />
               </Field>
 
-              <Field label="Links" optional note="GitHub, X, LinkedIn">
+              <Field label="Links" note="GitHub, X, LinkedIn">
                 <input
                   className="cml-input"
+                  required
                   placeholder="github.com/you, x.com/you, linkedin.com/in/you"
                   value={form.links}
                   onChange={(e) => set("links")(e.target.value)}
