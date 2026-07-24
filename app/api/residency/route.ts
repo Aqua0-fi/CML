@@ -67,10 +67,19 @@ export async function POST(req: Request) {
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(payload),
     });
-    if (!res.ok) {
+    const text = await res.text();
+    // The Apps Script / provider must confirm success in its body, otherwise a
+    // Google error page (still HTTP 200) would look like a false success.
+    const confirmed = res.ok && /"ok"\s*:\s*true/.test(text);
+    if (!confirmed) {
+      console.error(
+        `[residency] provider did not confirm (status ${res.status}): ` +
+          text.slice(0, 300),
+      );
       return NextResponse.json({ ok: false, error: "provider" }, { status: 502 });
     }
-  } catch {
+  } catch (err) {
+    console.error("[residency] provider request failed:", err);
     return NextResponse.json({ ok: false, error: "provider" }, { status: 502 });
   }
 
