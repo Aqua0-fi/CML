@@ -153,7 +153,7 @@ export default function ResidencyGoaPage() {
             }}
           >
             <Link
-              href="/residency-goa/deck"
+              href="/residency-goa/apply"
               className="cml-deck-btn"
               style={{
                 display: "inline-flex",
@@ -161,6 +161,22 @@ export default function ResidencyGoaPage() {
                 gap: 12,
                 padding: "15px 30px",
                 border: "1px solid #6B2224",
+                fontSize: 13,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+              }}
+            >
+              Apply <span className="cml-deck-arrow">→</span>
+            </Link>
+            <Link
+              href="/residency-goa/deck"
+              className="cml-btn-ink"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 12,
+                padding: "15px 30px",
+                border: "1px solid #16130F",
                 fontSize: 13,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",

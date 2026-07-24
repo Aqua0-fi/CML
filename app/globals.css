@@ -66,6 +66,76 @@ a:hover {
   transform: translateX(5px);
 }
 
+/* Form controls */
+.cml-input,
+.cml-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 360;
+  color: #16130f;
+  background: transparent;
+  border: 1px solid rgba(139, 133, 122, 0.45);
+  padding: 13px 15px;
+  border-radius: 0;
+  transition: border-color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+.cml-textarea {
+  resize: vertical;
+  min-height: 92px;
+  line-height: 1.55;
+}
+.cml-input:focus,
+.cml-textarea:focus {
+  outline: none;
+  border-color: #6b2224;
+}
+.cml-input::placeholder,
+.cml-textarea::placeholder {
+  color: #8b857a;
+  opacity: 0.75;
+}
+
+.cml-radio {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 360;
+  color: #16130f;
+}
+.cml-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.cml-radio-dot {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(139, 133, 122, 0.6);
+  border-radius: 50%;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+.cml-radio input:checked + .cml-radio-dot {
+  border-color: #6b2224;
+}
+.cml-radio input:checked + .cml-radio-dot::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #6b2224;
+  border-radius: 50%;
+}
+.cml-radio input:focus-visible + .cml-radio-dot {
+  box-shadow: 0 0 0 3px rgba(107, 34, 36, 0.18);
+}
+
 /* Sponsorship tier cards */
 .tier-grid {
   display: grid;
