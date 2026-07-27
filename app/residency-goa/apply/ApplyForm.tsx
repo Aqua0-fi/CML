@@ -37,7 +37,6 @@ type FormState = {
   coverage: string;
   coverageSituation: string;
   buildExplore: string;
-  _gotcha: string;
 };
 
 const EMPTY: FormState = {
@@ -56,7 +55,6 @@ const EMPTY: FormState = {
   coverage: "",
   coverageSituation: "",
   buildExplore: "",
-  _gotcha: "",
 };
 
 const labelStyle: React.CSSProperties = {
@@ -328,24 +326,6 @@ export default function ApplyForm() {
 
             {/* Form */}
             <form onSubmit={onSubmit} style={{ padding: "48px 0 120px" }}>
-              {/* honeypot */}
-              <input
-                type="text"
-                name="_gotcha"
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-                value={form._gotcha}
-                onChange={(e) => set("_gotcha")(e.target.value)}
-                style={{
-                  position: "absolute",
-                  left: "-9999px",
-                  width: 1,
-                  height: 1,
-                  opacity: 0,
-                }}
-              />
-
               <Field label="Name">
                 <input
                   className="cml-input"

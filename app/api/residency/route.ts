@@ -29,11 +29,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "bad_request" }, { status: 400 });
   }
 
-  // Honeypot: bots fill hidden fields. Pretend success, drop it.
-  if (typeof data._gotcha === "string" && data._gotcha.trim() !== "") {
-    return NextResponse.json({ ok: true });
-  }
-
   const REQUIRED = FIELDS.filter(
     (f) => f !== "stayDates" && f !== "coverageSituation",
   );
@@ -56,32 +51,41 @@ export async function POST(req: Request) {
   // Swap providers (Formspree / Basin / Getform / ...) with this one env var.
   const endpoint = process.env.RESIDENCY_FORM_ENDPOINT;
   if (!endpoint) {
-    // No provider wired yet: log so the form is testable in dev.
-    console.log("[residency] application received:\n" + JSON.stringify(payload, null, 2));
-    return NextResponse.json({ ok: true });
+    // Fail loudly instead of pretending success with nowhere to store the data.
+    console.error(
+      "[residency] RESIDENCY_FORM_ENDPOINT is not set. Restart the dev server after editing .env.local, and set the var on your host for production.",
+    );
+    return NextResponse.json({ ok: false, error: "not_configured" }, { status: 500 });
   }
 
-  try {
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const text = await res.text();
-    // The Apps Script / provider must confirm success in its body, otherwise a
-    // Google error page (still HTTP 200) would look like a false success.
-    const confirmed = res.ok && /"ok"\s*:\s*true/.test(text);
-    if (!confirmed) {
+  // Apps Script is slow and occasionally flaky, so time out and retry once.
+  const attempts = 2;
+  for (let i = 1; i <= attempts; i++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+      const text = await res.text();
+      // The provider must confirm success in its body, otherwise a Google
+      // error page (still HTTP 200) would look like a false success.
+      if (res.ok && /"ok"\s*:\s*true/.test(text)) {
+        return NextResponse.json({ ok: true });
+      }
       console.error(
-        `[residency] provider did not confirm (status ${res.status}): ` +
-          text.slice(0, 300),
+        `[residency] attempt ${i}/${attempts} not confirmed (status ${res.status}): ` +
+          text.slice(0, 200),
       );
-      return NextResponse.json({ ok: false, error: "provider" }, { status: 502 });
+    } catch (err) {
+      console.error(`[residency] attempt ${i}/${attempts} failed:`, String(err));
+    } finally {
+      clearTimeout(timeout);
     }
-  } catch (err) {
-    console.error("[residency] provider request failed:", err);
-    return NextResponse.json({ ok: false, error: "provider" }, { status: 502 });
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: false, error: "provider" }, { status: 502 });
 }
