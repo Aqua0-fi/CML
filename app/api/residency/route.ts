@@ -35,8 +35,24 @@ export async function POST(req: Request) {
   const missing = REQUIRED.filter(
     (f) => String(data[f] ?? "").trim() === "",
   );
+  // Open-ended answers must carry real detail, mirroring the client.
+  const MIN = 120;
+  const DETAIL_FIELDS = [
+    "workingOn",
+    "defiExperience",
+    "impressiveBuilt",
+    "impressiveNonWork",
+    "buildExplore",
+  ];
+  const tooShort = DETAIL_FIELDS.filter(
+    (f) => String(data[f] ?? "").trim().length < MIN,
+  );
   const email = String(data.email ?? "").trim();
-  if (missing.length > 0 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (
+    missing.length > 0 ||
+    tooShort.length > 0 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  ) {
     return NextResponse.json({ ok: false, error: "invalid" }, { status: 422 });
   }
   const name = String(data.name).trim();

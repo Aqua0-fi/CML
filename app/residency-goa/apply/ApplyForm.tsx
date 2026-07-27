@@ -21,6 +21,16 @@ const COVERAGE_OPTIONS = [
   "I need a full scholarship",
 ];
 
+// Open-ended answers must have real substance, not one-liners.
+const MIN = 120;
+const DETAIL_FIELDS = [
+  "workingOn",
+  "defiExperience",
+  "impressiveBuilt",
+  "impressiveNonWork",
+  "buildExplore",
+] as const;
+
 type FormState = {
   name: string;
   email: string;
@@ -97,6 +107,42 @@ const Field: React.FC<{
   </div>
 );
 
+const CountedTextarea: React.FC<{
+  value: string;
+  onChange: (v: string) => void;
+  error?: boolean;
+  minHeight?: number;
+}> = ({ value, onChange, error, minHeight }) => {
+  const len = value.trim().length;
+  const ok = len >= MIN;
+  return (
+    <>
+      <textarea
+        className="cml-textarea"
+        required
+        minLength={MIN}
+        style={minHeight ? { minHeight } : undefined}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+      <div
+        style={{
+          marginTop: 8,
+          fontSize: 13,
+          textAlign: "right",
+          color: error ? RED : MUTED,
+        }}
+      >
+        {error
+          ? `A bit more, please. At least ${MIN} characters.`
+          : ok
+            ? `${len} characters`
+            : `${len} / ${MIN}`}
+      </div>
+    </>
+  );
+};
+
 const RadioGroup: React.FC<{
   name: string;
   value: string;
@@ -130,6 +176,7 @@ export default function ApplyForm() {
     stayLength?: boolean;
     coverage?: boolean;
   }>({});
+  const [textError, setTextError] = useState<Record<string, boolean>>({});
 
   const set = (k: keyof FormState) => (v: string) =>
     setForm((f) => ({ ...f, [k]: v }));
@@ -146,8 +193,20 @@ export default function ApplyForm() {
       coverage: !form.coverage,
     };
     setRadioError(errs);
+
+    const textErrs: Record<string, boolean> = {};
+    for (const f of DETAIL_FIELDS) {
+      textErrs[f] = form[f].trim().length < MIN;
+    }
+    setTextError(textErrs);
+
     if (errs.role || errs.stayLength || errs.coverage) {
       const first = document.querySelector<HTMLElement>("[data-radio-error]");
+      first?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    if (Object.values(textErrs).some(Boolean)) {
+      const first = document.querySelector<HTMLElement>("[data-text-error]");
       first?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
@@ -379,14 +438,18 @@ export default function ApplyForm() {
                 </Field>
               </div>
 
-              <Field label="What are you working on right now?">
-                <textarea
-                  className="cml-textarea"
-                  required
-                  value={form.workingOn}
-                  onChange={(e) => set("workingOn")(e.target.value)}
-                />
-              </Field>
+              <div data-text-error={textError.workingOn ? "" : undefined}>
+                <Field label="What are you working on right now?">
+                  <CountedTextarea
+                    value={form.workingOn}
+                    error={textError.workingOn}
+                    onChange={(v) => {
+                      set("workingOn")(v);
+                      setTextError((t) => ({ ...t, workingOn: false }));
+                    }}
+                  />
+                </Field>
+              </div>
 
               <Field label="Links" note="GitHub, X, LinkedIn">
                 <input
@@ -398,33 +461,45 @@ export default function ApplyForm() {
                 />
               </Field>
 
-              <Field label="Tell us about your DeFi experience. What have you built, shipped, sold, or run? Be specific.">
-                <textarea
-                  className="cml-textarea"
-                  required
-                  style={{ minHeight: 130 }}
-                  value={form.defiExperience}
-                  onChange={(e) => set("defiExperience")(e.target.value)}
-                />
-              </Field>
+              <div data-text-error={textError.defiExperience ? "" : undefined}>
+                <Field label="Tell us about your DeFi experience. What have you built, shipped, sold, or run? Be specific.">
+                  <CountedTextarea
+                    value={form.defiExperience}
+                    error={textError.defiExperience}
+                    minHeight={130}
+                    onChange={(v) => {
+                      set("defiExperience")(v);
+                      setTextError((t) => ({ ...t, defiExperience: false }));
+                    }}
+                  />
+                </Field>
+              </div>
 
-              <Field label="Tell us something impressive you've built.">
-                <textarea
-                  className="cml-textarea"
-                  required
-                  value={form.impressiveBuilt}
-                  onChange={(e) => set("impressiveBuilt")(e.target.value)}
-                />
-              </Field>
+              <div data-text-error={textError.impressiveBuilt ? "" : undefined}>
+                <Field label="Tell us something impressive you've built.">
+                  <CountedTextarea
+                    value={form.impressiveBuilt}
+                    error={textError.impressiveBuilt}
+                    onChange={(v) => {
+                      set("impressiveBuilt")(v);
+                      setTextError((t) => ({ ...t, impressiveBuilt: false }));
+                    }}
+                  />
+                </Field>
+              </div>
 
-              <Field label="Tell us something impressive you've done that has nothing to do with work.">
-                <textarea
-                  className="cml-textarea"
-                  required
-                  value={form.impressiveNonWork}
-                  onChange={(e) => set("impressiveNonWork")(e.target.value)}
-                />
-              </Field>
+              <div data-text-error={textError.impressiveNonWork ? "" : undefined}>
+                <Field label="Tell us something impressive you've done that has nothing to do with work.">
+                  <CountedTextarea
+                    value={form.impressiveNonWork}
+                    error={textError.impressiveNonWork}
+                    onChange={(v) => {
+                      set("impressiveNonWork")(v);
+                      setTextError((t) => ({ ...t, impressiveNonWork: false }));
+                    }}
+                  />
+                </Field>
+              </div>
 
               <div data-radio-error={radioError.stayLength ? "" : undefined}>
                 <Field
@@ -490,15 +565,19 @@ export default function ApplyForm() {
                 </Field>
               ) : null}
 
-              <Field label="What would you want to build or explore in three weeks?">
-                <textarea
-                  className="cml-textarea"
-                  required
-                  style={{ minHeight: 130 }}
-                  value={form.buildExplore}
-                  onChange={(e) => set("buildExplore")(e.target.value)}
-                />
-              </Field>
+              <div data-text-error={textError.buildExplore ? "" : undefined}>
+                <Field label="What would you want to build or explore in three weeks?">
+                  <CountedTextarea
+                    value={form.buildExplore}
+                    error={textError.buildExplore}
+                    minHeight={130}
+                    onChange={(v) => {
+                      set("buildExplore")(v);
+                      setTextError((t) => ({ ...t, buildExplore: false }));
+                    }}
+                  />
+                </Field>
+              </div>
 
               <div style={{ marginTop: 44, display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
                 <button
