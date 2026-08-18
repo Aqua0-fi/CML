@@ -130,38 +130,65 @@ const SLIDES: Slide[] = [
       </>
     ),
     body: "Back the residency where the next liquidity tools get built, on your technology.",
-    foot: "Goa, India",
+    foot: "Goa, India · Oct 11 to Nov 1, 2026",
     motif: "/deck/sp-cover.gif",
   },
   {
-    kicker: "01 · The residency",
+    kicker: "01 · The problem we're pointing at",
+    title: "The world doesn't price in dollars. Onchain, it has to.",
+    body: (
+      <>
+        99% of stablecoin supply is USD. Non-USD sits at around $2B against
+        $313B.
+        <br />
+        <br />
+        Local currency stablecoins exist. What they don&apos;t have is
+        liquidity, and without liquidity they can&apos;t be used for the thing
+        they were built for.
+        <br />
+        <br />
+        That&apos;s the gap this residency works on.
+      </>
+    ),
+  },
+  {
+    kicker: "02 · The residency",
     title: "Three weeks. Two products.",
-    body: "Six to ten senior builders plus the Aqua0 team, three weeks on the Goan shore, taking liquidity ideas from plan to validated MVP.",
+    body: (
+      <>
+        Six to ten senior builders plus the Aqua0 team, three weeks on the Goan
+        shore, taking liquidity ideas from plan to validated MVP.
+        <br />
+        <br />
+        In India, three weeks before Devcon Mumbai, with the output continuing
+        into the ETHGlobal Mumbai tracks.
+      </>
+    ),
     motif: "/deck/sp-weeks.gif",
   },
   {
-    kicker: "02 · Why sponsor",
+    kicker: "03 · Why sponsor",
     title: "What you take home.",
     body: (
       <div style={{ display: "grid", gap: 15, maxWidth: 640 }}>
         <Bullet>
-          New use cases for your tech: teams take your stack where your
+          New use cases for your tech. Teams take your stack where your
           roadmap hasn&apos;t gone yet, and ship it.
         </Bullet>
         <Bullet>
-          Cross-protocol rooms: three weeks next to other protocols, where
+          Cross-protocol rooms. Three weeks next to other protocols, where
           integrations and composability actually happen.
         </Bullet>
         <Bullet>
-          Builders fluent in your stack: senior engineers go deep in your
+          Builders fluent in your stack. Senior engineers go deep in your
           docs and contracts, and leave as integrators and potential hires.
         </Bullet>
         <Bullet>
-          Real market signal: week three puts what was built on your
+          Real market signal. Week three puts what was built on your
           technology in front of users.
         </Bullet>
         <Bullet>
-          Deal flow, first: first look at what ships, first right to keep
+          Deal flow, first. First look at what ships, first right to keep
           building it.
         </Bullet>
       </div>
@@ -169,13 +196,22 @@ const SLIDES: Slide[] = [
     motif: "/deck/sp-why.gif",
   },
   {
-    kicker: "03 · The output",
+    kicker: "04 · The output",
     title: "Liquidity, made more efficient.",
-    body: "Our thesis is capital efficiency: deeper liquidity and better primitives. Every product that leaves Goa is a liquidity tool your ecosystem keeps.",
+    body: (
+      <>
+        Our thesis is capital efficiency: deeper liquidity and better
+        primitives.
+        <br />
+        <br />
+        Every product that leaves Goa is a liquidity tool your ecosystem keeps,
+        aimed at the currencies that most of DeFi has ignored.
+      </>
+    ),
     motif: "/deck/sp-output.gif",
   },
   {
-    kicker: "04 · Sponsorship",
+    kicker: "05 · Sponsorship",
     title: "Three ways in.",
     wide: true,
     body: (
@@ -217,7 +253,7 @@ const SLIDES: Slide[] = [
     ),
   },
   {
-    kicker: "05 · In good company",
+    kicker: "06 · In good company",
     title: "Alongside 1inch.",
     body: "1inch is our founding technology partner. The partner bench is small on purpose: join it early.",
     motif: "/deck/sp-partner.gif",

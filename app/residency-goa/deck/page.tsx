@@ -83,8 +83,8 @@ const SLIDES: Slide[] = [
         Residency Goa<span style={accent}>.</span>
       </>
     ),
-    body: "Three weeks in Goa to build the next DeFi primitives and validate the business around them.",
-    foot: "Goa, India",
+    body: "Three weeks on the Goan shore, building the liquidity rails that let the rest of the world use its own money onchain.",
+    foot: "Goa, India · Oct 11 to Nov 1, 2026",
     motif: "/deck/cover.gif",
   },
   {
@@ -92,40 +92,78 @@ const SLIDES: Slide[] = [
     title: "It started at Edge City.",
     body: (
       <>
-        We met at Edge City, Patagonia, at the Vibe Code Residency, the room
-        where <span style={accent}>Aqua0</span> was born and an idea became
-        infrastructure. Edge City is home to us.
+        We met at Edge City, Patagonia, at the Vibe Code Residency. That&apos;s
+        the room where <span style={accent}>Aqua0</span> was born and an idea
+        became infrastructure. Edge City is home to us.
+        <br />
+        <br />
+        Now we&apos;re doing it again, somewhere else, with a bigger question.
       </>
     ),
     motif: "/deck/origin.gif",
   },
   {
-    kicker: "02 · The goal",
-    title: "Build the next DeFi primitives.",
-    body: "Three weeks to create real innovations in DeFi: deepening liquidity and making core primitives more efficient. The kind of work that became Aqua0.",
+    kicker: "02 · The problem",
+    title: "99% of stablecoins are dollars.",
+    body: (
+      <>
+        Non-USD supply is around $2B against $313B. An all-time high, and still
+        a rounding error.
+        <br />
+        <br />
+        The Brazilian real, the Malaysian ringgit, the Indonesian rupiah, the
+        Mexican peso all exist onchain. What doesn&apos;t exist is the depth to
+        move size in and out of them.
+        <br />
+        <br />
+        So a merchant in São Paulo, a supplier in Kuala Lumpur, a family
+        receiving remittances in Manila still route through a currency that
+        isn&apos;t theirs.
+      </>
+    ),
+    foot: "DefiLlama · Aug 2026",
+  },
+  {
+    kicker: "03 · The goal",
+    title: "Build the primitives that fix it.",
+    body: (
+      <>
+        Three weeks to create real DeFi innovation: deepening liquidity and
+        making core primitives more efficient, so local currencies can work
+        onchain the way dollars already do.
+        <br />
+        <br />
+        The kind of work that became Aqua0.
+      </>
+    ),
     motif: "/deck/goal.gif",
   },
   {
-    kicker: "03 · Who it's for",
+    kicker: "04 · Why India",
+    title: "The largest emerging market, weeks before Devcon.",
+    body: "India is the biggest remittance-receiving country on earth and one of the deepest developer pools in crypto. Goa puts us there, three weeks before Devcon Mumbai, with everything we build heading straight into the ETHGlobal Mumbai continuity tracks.",
+  },
+  {
+    kicker: "05 · Who it's for",
     title: "Engineers and go-to-market, in balance.",
     body: "We're not just shipping a proof of concept. We're validating a business. So we pair strong engineers with go-to-market builders.",
     foot: "6-10 builders · plus the Aqua0 team already on the ground",
     motif: "/deck/who.gif",
   },
   {
-    kicker: "04 · What's included",
+    kicker: "06 · What's included",
     title: "On us.",
     body: (
       <div style={{ display: "grid", gap: 18, maxWidth: 560 }}>
         <Bullet>Edge City tickets</Bullet>
-        <Bullet>The residency & stay, fully covered</Bullet>
-        <Bullet>Backed by our partners & sponsors</Bullet>
+        <Bullet>The residency and stay, fully covered</Bullet>
+        <Bullet>Backed by our partners and sponsors</Bullet>
       </div>
     ),
     motif: "/deck/included.gif",
   },
   {
-    kicker: "05 · Partners",
+    kicker: "07 · Partners",
     title: "Powered by our partners.",
     body: (
       <div>
@@ -149,7 +187,7 @@ const SLIDES: Slide[] = [
     motif: "/deck/sponsors.gif",
   },
   {
-    kicker: "06 · The three weeks",
+    kicker: "08 · The three weeks",
     title: (
       <>
         In with an idea.
@@ -160,7 +198,7 @@ const SLIDES: Slide[] = [
     body: (
       <div style={{ display: "grid", gap: 20, maxWidth: 640 }}>
         <Week n="Week 01">
-          Plan &amp; prototype: scope the idea and build a working proof of
+          Plan and prototype: scope the idea and build a working proof of
           concept.
         </Week>
         <Week n="Week 02">Build: turn the PoC into a working MVP.</Week>
@@ -270,7 +308,7 @@ export default function DeckPage() {
       >
         <div
           key={i}
-          className="deck-grid"
+          className={s.motif ? "deck-grid" : undefined}
           style={{
             animation: "cml-hero-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both",
           }}
