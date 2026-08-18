@@ -9,7 +9,7 @@ const RED = "#6B2224";
 const MUTED = "#8B857A";
 const HAIR = "rgba(139, 133, 122, 0.28)";
 // Keep in sync with the main deck so browsers fetch fresh motif art.
-const MOTIF_V = "3";
+const MOTIF_V = "4";
 
 type Slide = {
   kicker: string;
@@ -150,6 +150,7 @@ const SLIDES: Slide[] = [
         That&apos;s the gap this residency works on.
       </>
     ),
+    motif: "/deck/sp-problem.gif",
   },
   {
     kicker: "02 · The residency",

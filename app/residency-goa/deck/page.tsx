@@ -9,7 +9,7 @@ const RED = "#6B2224";
 const MUTED = "#8B857A";
 const HAIR = "rgba(139, 133, 122, 0.28)";
 // Bump when the motif GIFs change so browsers don't serve a stale cached copy.
-const MOTIF_V = "4";
+const MOTIF_V = "5";
 
 type Slide = {
   kicker: string;
@@ -122,6 +122,7 @@ const SLIDES: Slide[] = [
       </>
     ),
     foot: "DefiLlama · Aug 2026",
+    motif: "/deck/problem.gif",
   },
   {
     kicker: "03 · The goal",
@@ -142,6 +143,7 @@ const SLIDES: Slide[] = [
     kicker: "04 · Why India",
     title: "The largest emerging market, weeks before Devcon.",
     body: "India is the biggest remittance-receiving country on earth and one of the deepest developer pools in crypto. Goa puts us there, three weeks before Devcon Mumbai, with everything we build heading straight into the ETHGlobal Mumbai continuity tracks.",
+    motif: "/deck/india.gif",
   },
   {
     kicker: "05 · Who it's for",

@@ -131,6 +131,44 @@ export const SponsorMotifArt: React.FC<{ which: string }> = ({ which }) => {
       );
     }
 
+    // The problem — USD supply column, a magnifier on the non-USD sliver
+    case "sp-problem": {
+      const cxb = 150;
+      const w = 70;
+      const top = 130;
+      const bot = 300;
+      const H = bot - top;
+      const nonFrac = 0.06; // exaggerated from ~0.6% so the sliver reads
+      const nonH = H * nonFrac;
+      const split = top + nonH;
+      const pulse = 0.55 + 0.45 * (0.5 + 0.5 * s(2));
+      // magnifier box to the right, zooming the sliver
+      const mbx = 300;
+      const mby = 150;
+      const mbw = 108;
+      const mbh = 96;
+      const thin = wavePath(mby + mbh - 38, mbx + 12, mbx + mbw - 12, 5, 40, p * 2 * TAU);
+      return (
+        <>
+          <rect x={cxb} y={top} width={w} height={H} fill="none" stroke={AXIS} strokeWidth={1.2} />
+          <rect x={cxb} y={split} width={w} height={bot - split} fill={INK} opacity={0.85} />
+          <rect x={cxb} y={top} width={w} height={nonH} fill={RED} opacity={pulse} />
+          <Label x={cxb + w / 2} y={bot + 24} anchor="middle">Supply</Label>
+          <text x={cxb + w + 12} y={(split + bot) / 2} fontSize={13} fill={MUTED} fontFamily={fontFamily}>
+            USD 99%
+          </text>
+          <P d={`M ${cxb + w} ${top} L ${mbx} ${mby}`} stroke={MUTED} sw={1} dash="2 4" />
+          <P d={`M ${cxb + w} ${split} L ${mbx} ${mby + mbh}`} stroke={MUTED} sw={1} dash="2 4" />
+          <rect x={mbx} y={mby} width={mbw} height={mbh} fill={CREAM} stroke={RED} strokeWidth={1.3} />
+          <P d={thin} stroke={RED} sw={1.8} />
+          <Label x={mbx + mbw / 2} y={mby + 22} anchor="middle" fill={RED} size={11}>Non-USD</Label>
+          <text x={mbx + mbw / 2} y={mby + mbh - 8} fontSize={11} fill={MUTED} fontFamily={fontFamily} textAnchor="middle" letterSpacing={1.5} style={{ textTransform: "uppercase" }}>
+            Thin liquidity
+          </text>
+        </>
+      );
+    }
+
     // Three weeks, two products — a two-line burn-up across week columns
     case "sp-weeks": {
       const w3 = (CX1 - CX0) / 3;
@@ -288,10 +326,10 @@ export const SponsorMotif: React.FC<{ which: string }> = ({ which }) => (
   </AbsoluteFill>
 );
 
-const ALL = ["sp-cover", "sp-weeks", "sp-why", "sp-output", "sp-partner", "sp-close"];
+const ALL = ["sp-cover", "sp-problem", "sp-weeks", "sp-why", "sp-output", "sp-partner", "sp-close"];
 export const SponsorSheet: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: CREAM }}>
-    <svg viewBox="0 0 1440 840" width={1440} height={840} xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 1440 1260" width={1440} height={1260} xmlns="http://www.w3.org/2000/svg">
       {ALL.map((m, idx) => {
         const col = idx % 3;
         const row = Math.floor(idx / 3);

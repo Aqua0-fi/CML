@@ -144,6 +144,60 @@ export const MotifArt: React.FC<{ which: string }> = ({ which }) => {
       );
     }
 
+    // The problem — USD dominance: one long bar, a thin non-USD sliver
+    case "problem": {
+      const y = 210;
+      const h = 46;
+      const total = CX1 - CX0;
+      const nonFrac = 0.055; // exaggerated from ~0.6% so the sliver reads
+      const split = CX1 - total * nonFrac;
+      const pulse = 0.55 + 0.45 * (0.5 + 0.5 * s(2));
+      return (
+        <>
+          <Frame ticks={[]} />
+          <rect x={CX0} y={y - h / 2} width={split - CX0} height={h} fill={INK} opacity={0.85} rx={2} />
+          <rect x={split} y={y - h / 2} width={CX1 - split} height={h} fill={RED} opacity={pulse} rx={1} />
+          <path d={diamond(split, y - h / 2 - 10, 4)} fill={RED} stroke={RED} strokeWidth={1} opacity={pulse} />
+          <Label x={CX0 + 4} y={y - h / 2 - 12}>USD · 99%</Label>
+          <Label x={CX1} y={y - h / 2 - 12} anchor="end" fill={RED}>Non-USD · 1%</Label>
+          <text x={CX0 + 6} y={y + h / 2 + 26} fontSize={17} fill={INK} fontFamily={fontFamily} fontWeight={600}>$313B</text>
+          <text x={CX1} y={y + h / 2 + 26} fontSize={14} fill={RED} fontFamily={fontFamily} textAnchor="end">$2B</text>
+          <Label x={CX0} y={CY1 + 22}>Stablecoin supply</Label>
+        </>
+      );
+    }
+
+    // Why India — a remittance league table, India on top
+    case "india": {
+      const bars = [
+        { y: 154, w: 278, red: true },
+        { y: 196, w: 150 },
+        { y: 238, w: 120 },
+        { y: 280, w: 94 },
+      ];
+      const pulse = 0.5 + 0.5 * (0.5 + 0.5 * s(2));
+      const tipX = CX0 + bars[0].w;
+      return (
+        <>
+          <line x1={CX0} y1={CY0} x2={CX0} y2={CY1} stroke={AXIS} strokeWidth={1.2} />
+          {bars.map((b, i) =>
+            b.red ? (
+              <rect key={i} x={CX0} y={b.y - 13} width={b.w} height={26} fill={RED} opacity={0.85} rx={2} />
+            ) : (
+              <rect key={i} x={CX0} y={b.y - 11} width={b.w} height={22} fill={INK} opacity={0.12} stroke={AXIS} strokeWidth={1} rx={2} />
+            ),
+          )}
+          <text x={CX0 + 14} y={bars[0].y + 5} fontSize={16} fill={CREAM} fontFamily={fontFamily} fontWeight={600}>
+            India
+          </text>
+          <text x={tipX + 12} y={bars[0].y + 5} fontSize={14} fill={RED} fontFamily={fontFamily} opacity={pulse}>
+            $120B
+          </text>
+          <Label x={CX0} y={CY1 + 22}>Remittances received</Label>
+        </>
+      );
+    }
+
     // Goal — the AMM invariant x·y = k with liquidity shaded
     case "goal": {
       const f = (x: number) => {
@@ -323,10 +377,10 @@ export const Motif: React.FC<{ which: string }> = ({ which }) => (
   </AbsoluteFill>
 );
 
-const ALL = ["cover", "origin", "goal", "who", "included", "weeks", "sponsors", "close"];
+const ALL = ["cover", "origin", "problem", "goal", "india", "who", "included", "weeks", "sponsors", "close"];
 export const MotifSheet: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: CREAM }}>
-    <svg viewBox="0 0 1920 840" width={1920} height={840} xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 1920 1260" width={1920} height={1260} xmlns="http://www.w3.org/2000/svg">
       {ALL.map((m, idx) => {
         const col = idx % 4;
         const row = Math.floor(idx / 4);

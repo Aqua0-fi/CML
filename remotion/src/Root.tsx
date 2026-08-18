@@ -7,7 +7,9 @@ import { SponsorMotif, SponsorSheet } from "./SponsorMotifs";
 const MOTIFS = [
   "cover",
   "origin",
+  "problem",
   "goal",
+  "india",
   "who",
   "included",
   "weeks",
@@ -17,6 +19,7 @@ const MOTIFS = [
 
 const SPONSOR_MOTIFS = [
   "sp-cover",
+  "sp-problem",
   "sp-weeks",
   "sp-why",
   "sp-output",
@@ -49,7 +52,7 @@ export const RemotionRoot: React.FC = () => {
         durationInFrames={96}
         fps={24}
         width={1920}
-        height={840}
+        height={1260}
       />
       {MOTIFS.map((m) => (
         <Composition
@@ -69,7 +72,7 @@ export const RemotionRoot: React.FC = () => {
         durationInFrames={96}
         fps={24}
         width={1440}
-        height={840}
+        height={1260}
       />
       {SPONSOR_MOTIFS.map((m) => (
         <Composition
