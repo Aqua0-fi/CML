@@ -18,7 +18,6 @@ const STAY_OPTIONS = [
 const COVERAGE_OPTIONS = [
   "I'll cover my Edge City ticket",
   "I need help with the Edge City ticket",
-  "I need a full scholarship",
 ];
 
 // Open-ended answers must have real substance, not one-liners.
@@ -182,8 +181,7 @@ export default function ApplyForm() {
     setForm((f) => ({ ...f, [k]: v }));
 
   const showDates = form.stayLength !== "" && form.stayLength !== STAY_OPTIONS[0];
-  const showSituation =
-    form.coverage === COVERAGE_OPTIONS[1] || form.coverage === COVERAGE_OPTIONS[2];
+  const showSituation = form.coverage === COVERAGE_OPTIONS[1];
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -350,9 +348,8 @@ export default function ApplyForm() {
                 Three weeks living and building with a small group of people
                 obsessed with DeFi. October 11 to November 1, at Edge City in
                 Goa. Not a conference. A house, a city by the sea, and enough
-                time to actually ship something. We cover housing for everyone
-                selected. The Edge City ticket is separate, and we have some
-                scholarships for that too.
+                time to actually ship something. The house is on us for everyone
+                selected. The Edge City ticket is separate.
               </p>
 
               {/* Disclaimer */}
@@ -536,8 +533,7 @@ export default function ApplyForm() {
               <div data-radio-error={radioError.coverage ? "" : undefined}>
                 <Field
                   label="Coverage"
-                  noteAbove="We cover housing for everyone selected. The Edge City ticket is separate."
-                  note="Full scholarships are limited and assigned based on profile."
+                  noteAbove="The house is on us for everyone selected. The Edge City ticket is separate."
                   error={radioError.coverage}
                 >
                   <RadioGroup
