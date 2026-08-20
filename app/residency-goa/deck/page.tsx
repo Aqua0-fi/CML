@@ -157,7 +157,8 @@ const SLIDES: Slide[] = [
     title: "On us.",
     body: (
       <div style={{ display: "grid", gap: 18, maxWidth: 560 }}>
-        <Bullet>The house and the residency, fully covered</Bullet>
+        <Bullet>Housing covered</Bullet>
+        <Bullet>Food covered</Bullet>
         <Bullet>Backed by our partners and sponsors</Bullet>
       </div>
     ),
