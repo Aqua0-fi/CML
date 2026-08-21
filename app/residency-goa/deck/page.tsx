@@ -162,6 +162,7 @@ const SLIDES: Slide[] = [
         <Bullet>Backed by our partners and sponsors</Bullet>
       </div>
     ),
+    foot: "Edge City ticket is separate. You cover it yourself.",
     motif: "/deck/included.gif",
   },
   {

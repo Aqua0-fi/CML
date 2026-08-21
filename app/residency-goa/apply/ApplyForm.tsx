@@ -348,8 +348,9 @@ export default function ApplyForm() {
                 Three weeks living and building with a small group of people
                 obsessed with DeFi. October 11 to November 1, at Edge City in
                 Goa. Not a conference. A house, a city by the sea, and enough
-                time to actually ship something. The house is on us for everyone
-                selected. The Edge City ticket is separate.
+                time to actually ship something. Housing and food are on us for
+                everyone selected. The Edge City ticket is separate, and you
+                cover it yourself.
               </p>
 
               {/* Disclaimer */}
@@ -533,7 +534,7 @@ export default function ApplyForm() {
               <div data-radio-error={radioError.coverage ? "" : undefined}>
                 <Field
                   label="Coverage"
-                  noteAbove="The house is on us for everyone selected. The Edge City ticket is separate."
+                  noteAbove="Housing and food are on us for everyone selected. You cover the Edge City ticket yourself."
                   error={radioError.coverage}
                 >
                   <RadioGroup
